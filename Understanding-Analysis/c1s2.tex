@@ -1,0 +1,310 @@
+\documentclass[11pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{textcomp}
+
+\newcommand{\doctitle}{ }
+\makeatletter
+\renewcommand{\ps@headings}{%
+\renewcommand{\@evenhead}{\parbox{\textwidth}{\hrulefill
+\fbox{\sffamily Understanding Analysis - Abbott }\hrulefill } }%
+\renewcommand{\@oddhead}{\parbox{\textwidth}{\hrulefill
+\fbox{\sffamily Understanding Analysis - Abbott  }\hrulefill}}}
+\makeatother
+
+
+\linespread{.9}
+\hoffset=-0in    \voffset=-.5in
+\oddsidemargin=0in   \evensidemargin=0in
+\topmargin=-.25in
+\textwidth=6.5in   \textheight=9.5in
+\columnseprule=.3pt
+\setlength{\parskip}{1em}
+
+
+
+\usepackage{multirow}
+\usepackage{multicol}
+
+\newcommand{\mytitle}[1]{{
+\begin{centering}
+{\Large \sffamily Understanding Analysis Abbott}\\
+\bigskip\bigskip{\Large \sffamily \bfseries{#1}}\\
+\bigskip\bigskip\end{centering}
+}}
+
+\newcommand{\mytitlecompact}[1]{{
+
+\hfill
+{\Large \sffamily \bfseries{#1}}
+\hfill
+%\bigskip
+}}
+
+
+\newcommand{\mysection}[1]{{
+\smallskip
+\noindent
+{\large \sffamily \bfseries{#1}}
+}}
+
+
+\newcommand{\mysubsection}[1]{{
+\smallskip
+{\sffamily \bfseries{#1}}
+}}
+
+\pagestyle{empty}
+\pagestyle{headings}
+
+\def\N{{\mathbb{N}}}
+\def\Z{{\mathbb{Z}}}
+\def\Q{{\mathbb{Q}}}
+\def\R{{\mathbb{R}}}
+\def\C{{\mathbb{C}}}
+
+\usepackage{amsthm}
+\newtheorem{innercustomthm}{Theorem}
+\newenvironment{thm}[1]
+    {\renewcommand\theinnercustomthm{#1}\innercustomthm}
+    {\endinnercustomthm}
+
+\newtheorem{innercustomdefn}{Definition}
+\newenvironment{defn}[1]
+    {\renewcommand\theinnercustomdefn{#1}\innercustomdefn\upshape}
+    {\endinnercustomdefn}
+
+\newtheorem{innercustomexmp}{Example}
+\newenvironment{exmp}[1]
+    {\renewcommand\theinnercustomexmp{#1}\innercustomexmp\upshape}
+    {\endinnercustomexmp}
+
+\newtheorem{innercustomexer}{Exercise}
+\newenvironment{exer}[1]
+    {\renewcommand\theinnercustomexer{#1}\innercustomexer\upshape}
+    {\endinnercustomexer}
+
+\begin{document}
+
+\mytitlecompact{Section 1.2 - Results}
+
+\begin{defn}{1.2.3}
+    Given two sets $A$ and $B$, a \underline{function} from $A$ to $B$ is a rule or mapping that takes each element $x\in A$ and associates with it a single element of $B$. In this case, we write $f:A\to B$. Given an element $x\in A$, the expression $f(x)$ is used to represent the element of $B$ associated with $x$ by $f$. The set $A$ is called the \underline{domain} of $f$. The \underline{range} of $f$ is not necessarily equal to $B$ but refers to the subset of $B$ given by $\{y\in B:y=f(x)$ for some $x\in A\}$.
+\end{defn}
+
+\begin{exmp}{1.2.5} \textbf{(Triangle Inequality)} The \emph{absolute value function} is so important that it merits the special notation $|x|$ in place of the usual $f(x)$ or $g(x)$. It is defined for every real number via the piecewise definition
+\begin{center}
+    $|x|=
+    \begin{cases}
+        x & \text{if}~x\geq 0 \\
+        -x & \text{if}~x<0
+    \end{cases}
+    $
+\end{center}
+With respect to multiplication and division, the absolute value function satisfies
+\begin{enumerate}
+    \item[(i)] $|ab|=|a||b|$
+    \item[(ii)] $|a+b|\leq |a|+|b|$ \textbf{(Triangle Inequality)}
+\end{enumerate}
+for all choices of $a$ and $b$.
+\end{exmp}
+
+\begin{thm}{1.2.6}
+    Two real numbers $a$ and $b$ are equal if and only if for every real number $\epsilon>0$ it follows that $|a-b|<\epsilon$.
+\end{thm}
+\begin{proof}
+    For the forward direction, let $a=b$. Then $\forall~\epsilon>0$ it is true that $\epsilon>|a-b|$ because $|a-b|=0$. For the backward direction, we will assume that $a\neq b$. Then $\exists~\epsilon_0=|a-b|>0$. But the existence of $\epsilon_0$ contradicts our premise that $|a-b|<\epsilon~\forall~\epsilon>0$. Therefore $a\neq$ does not imply $|a-b|<\epsilon~\forall~\epsilon>0$.
+\end{proof}
+
+\mytitlecompact{Section 1.2 - Exercises}
+
+\begin{exer}{1.2.1}
+    (a) Prove that $\sqrt{3}$ is irrational. Does a similar argument work to show $\sqrt{6}$ is irrational? (b) Where does the proof of Theorem 1.1.1 break down if we try to use it to prove $\sqrt{4}$ is irrational?
+    \begin{enumerate}
+        \item[(a)]
+            \begin{proof}
+                Assume for the sake of contradiction that there exists a rational number $x$ whose square is $3$. Since $x$ is rational, there must exist integers $p$ and $q$ such that $x=\frac{p}{q}$ with $q\neq 0$ and $gcd(p,q)=1$. It follows that $\frac{p^2}{q^2}=3$ and $p^2=3q^2$. From this we can say that, because $p^2$ is divisible by $3$, $p$ must be divisible by $3$. That is, there exists $k\in\Z$ such that $p=3k$. Expressing $p$ in terms of $k$ gives $(3k)^2=3q^2$, and $3k^2=q^2$. From this we can say that, because $q^2$ is divisible by $3$, $q$ must be divisible by $3$ But this implies that both $p$ and $q$ are divisible by $3$, contradicting our assumption that $gcd(p,q)=1$. Therefore, our initial assumption must be false and it must be the case that there is no rational number whose square is $3$.
+            \end{proof}
+            A similar argument would work to show that $\sqrt{6}$ is irrational. You would arrive at the contradiction by showing that $p$ and $q$ are both divisible by $2$.
+        \item[(b)]
+            It is not necessarily true that if $n^2$ is divisible by $4$ then $n$ is divisible by $4$ (take $n=9$ for example).
+    \end{enumerate}
+\end{exer}
+\begin{exer}{1.2.2}
+    Show that there is no rational number $r$ satisfying $2^r=3$.
+    \begin{proof}
+        Assume for the sake of contradiction that there exists a rational number $r$ such that $2^r=3$. Since $x$ is rational, there must exist integers $p$ and $q$ such that $x=\frac{p}{q}$ with $q\neq 0$ and $gcd(p,q)=1$. It follows that $2^{\frac{p}{q}}=3$ and $2^p=3^q$. This equality cannot hold because $2^p$ is even and $3^q$ is odd. Therefore, there is no rational number $r$ satisfying $2^r=3$.
+    \end{proof}
+\end{exer}
+\begin{exer}{1.2.3}
+    Decide which of the following represent true statements about the nature of sets. For any that are false, provide a specific example where the statement in question does not hold.
+    \begin{enumerate}
+        \item[(a)]
+            If $A_1\supseteq A_2\supseteq A_3\supseteq A_4...$ are all sets containing an infinite number of elements, then the intersection $\cap_{n=1}^{\infty} A_n$ is infinite as well. \\ \\
+            False. Consider the intersection $\cap_{n=1}^{\infty} A_n$ where $A_n=\{m\in\N~|~m\geq n\}$. The intersection must contain natural numbers but for every natural number $m$ there will always be a set $A_n$ that does not contain $m$, thus $m$ won't be in the intersection.
+        \item[(b)]
+            If $A_1\supseteq A_2\supseteq A_3\supseteq A_4...$ are all finite, nonempty sets of real numbers, then the intersection $\cap_{n=1}^{\infty}A_n$ is finite and nonempty. \\ \\
+            True. Each subset must be nonempty and finite so the intersection will always have at least one element and never be infinite.
+        \item[(c)]
+            $A\cap(B\cup C)=(A\cap B)\cup C$ \\ \\
+            False. Choose $x$ such that $x\in C$ but $x\notin A$ and $x\notin B$. Then $x\in (A\cap B)\cup C$ but $x\notin A\cap(B\cup C)$.
+        \item[(d)]
+            $A\cap(B\cap C)=(A\cap B)\cap C$ \\ \\
+            True. Any element in either set needs to be in $A$, $B$, and $C$.
+        \item[(e)]
+            $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$ \\ \\
+            True. An element in either set must be in $A$ and either $B$ or $C$.
+    \end{enumerate}
+\end{exer}
+\begin{exer}{1.2.4}
+    Produce an infinite collection of sets $A_1,A_2,A_3,...$ with the property that every $A_i$ has an infinite number of elements, $A_i\cap A_j=\emptyset$ for all $i\neq j$ and $\cup_{i=1}^{\infty}A_i=\N$. \\ \\
+    Construct the desired collection of sets by choosing $A_n=\{a_1, a_2, a_3,...\}$ where $a_1=\Sigma_{i=1}^{n}i$ and $a_m=a_{m-1}+(n+m-2)$ for all $m>1$.
+\end{exer}
+\begin{exer}{1.2.5} \textbf{(De Morgan's Laws)}
+    Let $A$ and $B$ be subsets of $\R$.
+    \begin{enumerate}
+        \item[(a)]
+            If $x\in(A\cap B)^c$, explain why $x\in A^c\cup B^c$. This shows that $(A\cap B)^c\subseteq A^c\cup B^c$. \\ \\
+            If $x\in(A\cap B)^c$ then $x$ is not in both $A$ and $B$. This means $x$ can be in one of either $A$ or $B$ or $x$ can be in neither. For the first case, without loss of generality, let $x\in A$ and $x\notin B$. Then $x\in B^c$ and thus $x\in A^c\cup B^c$. For the second case, $x\notin A$ and $x\notin B$. Then $x\in A^c$ and $x\in B^c$ so $x\in A^c\cup B^c$. Therefore, $x\in (A\cap B)^c\subseteq A^c\cup B^c$.
+        \item[(b)]
+            Prove the reverse inclusion $(A\cap B)^c\supseteq A^c\cup B^c$, and conclude that $(A\cap B)^c=A^c\cup B^c$. \\ \\
+            If $x\in A^c\cup B^c$ then $x$ is not in $A$ or $x$ is not in $B$. Without loss of generality, let $x\notin A$. Then $x\notin A\cap B$ and thus $x\in(A\cap B)^c$. Therefore, $A^c\cup B^c\subseteq x\in (A\cap B)^c$. \\ \\
+            Combining this result with part (a), we get $(A\cap B)^c=A^c\cup B^c$.
+        \item[(c)]
+            Show $(A\cup B)^c=A^c\cap B^c$ by demonstrating inclusion both ways. \\ \\
+            If $x\in (A\cup B)^c$ then $x\notin A$ and $x\notin B$, thus $x\in A^c\cap B^c$. This gives us $(A\cup B)^c\subseteq A^c\cap B^c$. If $x\in A^c\cap B^c$ then $x\notin A$ and $x\notin B$, thus $x\notin(A\cup B)$ and $x\in(A\cup B)^c$. This gives us $A^c\cap B^c\subseteq(A\cup B)^c$. Therefore, $(A\cup B)^c=A^c\cap B^c$.
+    \end{enumerate}
+\end{exer}
+\begin{exer}{1.2.6}
+    \begin{enumerate}
+        \item[(a)]
+            Verify the triangle inequality in the special case where $a$ and $b$ have the same sign. \\ \\
+            If $a$ and $b$ have the same sign then $|a+b|=|a|+|b|$, so the triangle inequality holds $|a+b|\leq |a|+|b|$.
+        \item[(b)]
+            Find an efficient proof for all the cases at once by first demonstrating $(a+b)^2\leq(|a|+|b|)^2$. \\ \\
+            The given inequality expands to $a^2+2ab+b^2\leq|a|^2+2|a||b|+2|b|^2$ and since $x^2=|x|^2~\forall~x\in\R$ we can further simplify to $ab\leq |a||b|$. We know that this simplified inequality is true because the left side can be negative while the right side can't, thus we know the given inequality is true. Taking the square root of both sides of the original inequality gives us the triangle inequality, thus $|a+b|\leq|a|+|b|$ must hold.
+        \item[(c)]
+            Prove $|a-b|\leq|a-c|+|c-d|+|d-b|$ for all $a$, $b$, $c$, and $d$. \\ \\
+            Begin by observing that $a-b=(a-c)+(c-d)+(d-b)$. By taking the absolute value of both sides we get $|a-b|=|(a-c)+(c-d)+(d-b)|$. By applying the triangle inequality to the right hand side of the inequality we get $|a-b|=|(a-c)+(c-d)+(d-b)|\leq|||a-c|+|c-d||+(d-b)|$, and with another application of the triangle inequality we get $|a-b|=|(a-c)+(c-d)+(d-b)|\leq|a-c|+|c-d|+|d-b|$. Therefore, $|a-b|\leq|a-c|+|c-d|+|d-b|~\forall~a,b,c,d\in\R$.
+        \item[(d)]
+            Prove $||a|-|b||\leq|a-b|$. \\ \\
+            Begin by observing that $||a|-|b||=|a|-|b|$ if $|a|\geq|b|$. Without loss of generality, assume $|a|\geq|b|$. It follows that $|a|-|b|=|a-b+b|-|b|\leq|a-b|+|b|-|b|=|a-b|$. Therefore, $||a|-|b||\leq|a-b|$.
+    \end{enumerate}
+\end{exer}
+\begin{exer}{1.2.7}
+    Given a function $f$ and a subset $A$ of its domain, let $f(A)$ represent the range of $f$ over the set $A$; that is $f(A)=\{f(x):x\in A\}$.
+    \begin{enumerate}
+        \item[(a)]
+            Let $f(x)=x^2$. If $A=[0,2]$ (the closed interval $\{x\in\R:0\leq x\leq 2\}$) and $B=[1,4]$ find $f(A)$ and $f(B)$. Does $f(A\cap B)=f(A)\cap f(B)$ in this case? Does $f(A\cup B)=f(A)\cup f(B)$? \\ \\
+            $f(A)=[0, 4]$ and $f(B)=[1, 16]$. In this case $f(A\cap B)=f(A)\cap f(B)=[1, 4]$ and $f(A\cup B)=f(A)\cup f(B)=[0, 16]$.
+        \item[(b)]
+            Find two sets $A$ and $B$ for which $f(A\cap B)\neq f(A)\cap f(B)$. \\ \\
+            Let $A=\{x\in\R:x<0\}$ and let $B=\{x\in\R:x>0\}$. In this case $f(A\cap B)=\emptyset$ and $f(A)\cap f(B)=\{x\in\R:x>0\}$.
+        \item[(c)]
+            Show that, for an arbitrary function $g:\R\to\R$, it is always true that $g(A\cap B)\subseteq g(A)\cap g(B)$ for all sets $A,B\subseteq\R$. \\ \\
+            Let $y\in g(A\cap B)$. There must exist $x\in A\cap B$ such that $g(x)=y$. Since $x\in A\cap B$, it must be the case that $y\in g(A)$ and $y\in g(B)$, thus $y\in g(A)\cap g(B)$. Therefore, $g(A\cap B)\subseteq g(A)\cap g(B)$.
+        \item[(d)]
+            Form and prove a conjecture about the relationship between $g(A\cup B)$ and $g(A)\cup g(B)$ for an arbitrary function $g$. \\ \\
+            Consider the following: $g(A\cup B)=g(A)\cup g(B)$. If $y\in g(A\cup B)$ then there exists $x\in A\cup B$ such that $g(x)=y$. It follows that $x$ is in at least one of either $A$ or $B$, so $y$ is in at least one of either $g(A)$ or $g(B)$. Thus, $y\in g(A)\cup g(B)$ and $g(A\cup B)\subseteq g(A)\cup g(B)$. If $y\in g(A)\cup g(B)$ then there exists $x$ in at least one of either $A$ or $B$ such that $g(x)=y$. It follows that $x$ is in $A\cup B$, so $y$ is in $g(A\cup B)$. Thus $y\in g(A\cup B)$ and $g(A)\cup g(B)\subseteq g(A\cup B)$. Therefore, $g(A\cup B)=g(A)\cup g(B)$.
+    \end{enumerate}
+\end{exer}
+\begin{exer}{Exercise 1.2.8}
+    Here are two important definitions related to a function $f:A\to B$. The function is \underline{one-to-one} (1-1) if $a_1\neq a_2$ in $A$ implies that $f(a_1)\neq f(a_2)$ in $B$. The function $f$ is \underline{onto} if, given any $b\in B$, it is possible to find an element $a\in A$ for which $f(a)=b$. Give an example of each or state that the request is impossible:
+    \begin{enumerate}
+        \item[(a)]
+            $f:\N\to\N$ that is 1-1 but not onto. \\ \\
+            $f(x)=2x$.
+        \item[(b)]
+            $f:\N\to\N$ that is onto but not 1-1. \\ \\
+            $f(x)=1$.
+        \item[(c)]
+            $f:\N\to\Z$ that is 1-1 and onto \\ \\
+            $f(x)=
+            \begin{cases}
+                \frac{x+1}{2} & \text{if x is odd} \\
+                -\frac{x}{2} & \text{if x is even}
+            \end{cases}
+            $
+    \end{enumerate}
+\end{exer}
+\begin{exer}{1.2.9}
+    Given a function $f:D\to\R$ and a subset $B\subseteq\R$, let $f^{-1}(B)$ be the set of all points from the domain $D$ that get mapped into $B$; that is $f^{-1}(B)=\{x\in D:f(x)\in B\}$. This set is called the \underline{preimage} of $B$.
+    \begin{enumerate}
+        \item[(a)]
+            Let $f(x)=x^2$. If $A$ is the closed interval $[0,4]$ and $B$ is the closed interval $[-1,1]$, find $f^{-1}(A)$ and $f^{-1}(B)$. Does $f^{-1}(A\cap B)=f^{-1}(A)\cap f^{-1}(B)$ in this case? Does $f^{-1}(A\cup B)=f^{-1}(A)\cup f^{-1}(B)$? \\ \\
+            $f^{-1}(A)=[-2,2]$ and $f^{-1}(B)=[-1, 1]$. In this case $f^{-1}(A\cap B)=f^{-1}(A)\cap f^{-1}(B)=[-1,1]$ and $f^{-1}(A\cup B)=f^{-1}(A)\cup f^{-1}(B)=[-2,2]$.
+        \item[(b)]
+            The good behavior of preimages demonstrated in (a) is completely general. Show that for an arbitrary function $g:\R\to\R$, it is always true that $g^{-1}(A\cap B)=g^{-1}(A)\cap g^{-1}(B)$ and $g^{-1}(A\cup B)=g^{-1}(A)\cup g^{-1}(B)$ for all sets $A,B\subseteq\R$. \\ \\
+            Let $x\in g^{-1}(A\cap B)$ such that $g(x)\in A\cap B$. Since $g(x)\in A$ and $g(x)\in B$, it follows that $x\in g^{-1}(A)$ and $x\in g^{-1}(B)$. Thus $x\in g^{-1}(A)\cap g^{-1}(B)$ and $g^{-1}(A\cap B)\subseteq g^{-1}(A)\cap g^{-1}(B)$. Now, let $x\in g^{-1}(A)\cap g^{-1}(B)$. It follows that $x\in g^{-1}(A)$ such that $g(x)\in A$ and $x\in g^{-1}(B)$ such that $g(x)\in B$. From this we know that $g(x)\in A\cap B$, thus $x\in g^{-1}(A\cap B)$ and $g^{-1}(A)\cap g^{-1}(B)\subseteq g^{-1}(A\cap B)$. Therefore, $g^{-1}(A\cap B)=g^{-1}(A)\cap g^{-1}(B)$. \\ \\
+            Next, let $x\in g^{-1}(A\cup B)$ such that $g(x)\in A\cup B$. Since $g(x)\in A$ or $g(x)\in B$, it follows that $x\in g^{-1}(A)$ or $x\in g^{-1}(B)$. Thus $x\in g^{-1}(A)\cup g^{-1}(B)$ and $g^{-1}(A\cup B)\subseteq g^{-1}(A)\cup g^{-1}(B)$. Now, let $x\in g^{-1}(A)\cup g^{-1}(B)$. It follows that $x\in g^{-1}(A)$ such that $g(x)\in A$ or $x\in g^{-1}(B)$ such that $g(x)\in B$. From this we know that $g(x)\in A\cup B$, thus $x\in g^{-1}(A\cup B)$ and $g^{-1}(A)\cup g^{-1}(B)\subseteq g^{-1}(A\cup B)$. Therefore, $g^{-1}(A\cup B)=g^{-1}(A)\cup g^{-1}(B)$.
+    \end{enumerate}
+\end{exer}
+\begin{exer}{1.2.10}
+    Decide which of the following are true statements. Provide a short justification for those that are valid and a counterexample for those that are not:
+    \begin{enumerate}
+        \item[(a)]
+            Two real numbers satisfy $a<b$ if and only if $a<b+\epsilon$ for every $\epsilon>0$. \\ \\
+            False. Choose $a=b$, then $a<b+\epsilon$ for every $\epsilon>0$ but $a\nless b$.
+        \item[(b)]
+            Two real numbers satisfy $a<b$ if $a<b+\epsilon$ for every $\epsilon>0$. \\ \\
+            False. Choose $a=b$, then $a<b+\epsilon$ for every $\epsilon>0$ but $a\nless b$.
+        \item[(c)]
+            Two real numbers satisfy $a\leq b$ if and only if $a<b+\epsilon$ for every $\epsilon>0$ \\ \\
+            True. If $a=b$ then adding any positive amount, no matter how small, to $b$ will make $a$ strictly less than $b$, and if $a<b$ then adding any positive amount to $b$ will preserve the inequality. Conversely, if choosing any $\epsilon>0$ gives $a<b+\epsilon$ then it must have been the case that $a\leq b$ to begin with.
+    \end{enumerate}
+\end{exer}
+\begin{exer}{1.2.11}
+    Form the logical negation of each claim. One trivial way to do this is to simply add ``It is not the case that..." in front of each assertion. To make this interesting, fashion the negation into a positive statement that avoids using the word ``not" altogether. In each case, make an intuitive guess as to whether the claim or its negation is the true statement.
+    \begin{enumerate}
+        \item[(a)]
+            For all real numbers satisfying $a<b$, there exists an $n\in\N$ such that $a+1/n<b$. \\ \\
+            There exists $a,b\in\R$ with $a<b$ such that $a+1/n\geq b$ for all $n\in\N$ (false).
+        \item[(b)]
+            There exists a real number $x>0$ such that $x<1/n$ for all $n\in\N$. \\ \\
+            For all $x\in\R$ with $x>0$ there exists $n\in\N$ such that $x\geq1/n$ (true).
+        \item[(c)]
+            Between every two distinct real numbers there is a rational number. \\ \\
+            There exists $a,b\in\R$ (with $a<b$) such that the interval $[a,b]$ contains no rational numbers (false).
+    \end{enumerate}
+\end{exer}
+\begin{exer}{1.2.12}
+    Let $y_1=6$, and for each $n\in\N$ define $y_{n+1}=(2y_n-6)/3$.
+    \begin{enumerate}
+        \item[(a)]
+            Use induction to prove that the sequence satisfies $y_n>-6$ for all $n\in\N$.
+            \begin{proof}
+                We will prove the desired result inductively. Begin by observing that $y_1=6>-6$, proving the desired result for $n=1$. Next, we will examine the $y_{n+1}$ case with the assumption that $y_n>-6$. From our assumption, it follows that $2y_n>-12$, $2y_n-6>18$, $\frac{2y_n-6}{3}>-6$, $y_{n+1}>-6$. Therefore, by the principle of mathematical induction, $y_n>-6$ for all $n\in\N$.
+            \end{proof}
+        \item[(b)]
+            Use another induction argument to show the sequence $(y_1,y_2,y_3,...)$ is decreasing.
+            \begin{proof}
+                We will prove the desired result inductively. Begin by observing that $y_1=6>2=y_2$, proving the desired result for the first two elements of the sequence. Next, we will examine the $y_{n+1}$ case with the assumption that $y_{n-1}<y_n$. We can use algebra to determine that $y_{n-1}=\frac{3y_n+6}{2}$. Thus from our assumption, it follows that $\frac{3y_n+6}{2}>y_n$, $3y_n+6>2y_n$, $3y_n>2y_n-6$, $y_n>\frac{2y_n-6}{3}=y_{n+1}$. Therefore, by the principle of mathematical induction, the sequence $(y_1,y_2,y_3,...)$ must be decreasing.
+            \end{proof}
+    \end{enumerate}
+\end{exer}
+\begin{exer}{1.2.13}
+    For this exercise, assume Exercise 1.2.5 has been successfully completed.
+    \begin{enumerate}
+        \item[(a)]
+            Show how induction can be used to conclude that $(A_1\cup A_2\cup ...\cup A_n)^c=A_1^c\cap A_2^c\cap ...\cap A_n^c$ for any finite $n\in\N$.
+            \begin{proof}
+                We will prove the desired result inductively. Begin by observing that $(A_1)^c=A_1^c$ and that our work in Exercise 1.2.5 part (c) gives us $(A_1\cup A_2)^c=A_1^c\cap A_2^c$, proving the desired result for $n=1$ and $n=2$. Next, we will examine the $(A_1\cup ...\cup A_n\cup A_{n+1})^c$ case with the assumption that $(A_1\cup ...\cup A_n)^c=A_1^c\cap ...\cap A_n^c$. Starting with $(A_1\cup ...\cup A_n\cup A_{n+1})^c$, we can use the result from Exercise 1.2.5 part (c) to get $(A_1\cup ...\cup A_n)^c\cap A_{n+1}^c$. Then, from our assumption we know that $(A_1\cup ...\cup A_n)^c\cap A_{n+1}^c=(A_1^c\cap ...\cap A_n^c)\cap A_{n+1}^c$. Finally, using associativity we see that $(A_1^c\cap ...\cap A_n^c)\cap A_{n+1}^c=A_1^c\cap ...\cap A_n^c\cap A_{n+1}^c$. Therefore, by the principle of mathematical induction, $(A_1\cup A_2\cup ...\cup A_n)^c=A_1^c\cap A_2^c\cap ...\cap A_n^c$ for any finite $n\in\N$.
+            \end{proof}
+        \item[(b)]
+            It is tempting to appeal to induction to conclude that
+            \begin{equation*}
+                \left(\bigcup_{i=1}^\infty A_i\right)^c=\bigcap_{i=1}^\infty A_i^c,
+            \end{equation*}
+            but induction does not apply here. Induction is used to prove that a particular statement holds for every value of $n\in\N$, but this does not imply the validity of the infinite case. To illustrate this point, find an example of a collection of sets $B_1, B_2, B_3,...$ where $\cap_{i=1}^nB_i\neq\emptyset$ is true for every $n\in\N$, but $\cap_{i=1}^\infty B_i\neq\emptyset$ fails. \\ \\
+            Choose $B_i=\{m\in\N:m\geq i\}$. For finite $n$, the intersection will contain all natural numbers greater than or equal to $n$. Exercise 1.2.3 part (a) explains why the intersection is empty when $n=\infty$.
+        \item[(c)]
+            Nevertheless, the infinite version of De Morgan's Law stated in (b) is a valid statement. Provide a proof that does not use induction.
+            \begin{proof}
+                Let $x\in\big(\bigcup_{i=1}^\infty A_i\big)^c$. It follows that $x\notin\bigcup_{i=1}^\infty A_i$ and thus $x\notin A_i~\forall~i$. But this means that $x\in A_i^c~\forall~i$ and thus $x\in\bigcap_{i=1}^\infty A_i^c$. Therefore $\big(\bigcup_{i=1}^\infty A_i\big)^c\subseteq\bigcap_{i=1}^\infty A_i^c$. Now, let $x\in\bigcap_{i=1}^\infty A_i^c$. Since $x\in A_i^c~\forall~i$, it follows that $x\notin A_i~\forall~i$. Thus $x\notin\bigcup_{i=1}^\infty A_i$. In other words, $x\in\big(\bigcup_{i=1}^\infty A_i\big)^c$. Therefore $\big(\bigcup_{i=1}^\infty A_i\big)^c\subseteq\bigcap_{i=1}^\infty A_i^c$. By proving inclusion in both directions, we have shown that $\left(\bigcup_{i=1}^\infty A_i\right)^c=\bigcap_{i=1}^\infty A_i^c$, as desired.
+            \end{proof}
+    \end{enumerate}
+\end{exer}
+
+\end{document}
